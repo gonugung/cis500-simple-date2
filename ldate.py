@@ -3,8 +3,8 @@
 #
 # A simple date class for *L*earning to write classes
 #
-# Name: zzNAMEzz (replace with your name)
-# Section: XX
+# Name: Gayatri Gonuguntla
+# Section: 04
 #
 # Fall 2023
 #########################################################
@@ -44,7 +44,6 @@ class LDate:
         if not (isinstance(year, int) and 1 <= month <= 12 and 1 <= day <= LDate.days_in_month(year, month)):
             return False
         return True
-        #
 
     #
 
@@ -53,7 +52,7 @@ class LDate:
             Raise a ValueError if year-month-day is not a valid date (e.g., 2022-15-27)
         """
         if not self.is_valid_date(year, month, day):
-            raise ValueError("Invalid date: {}-{}-{}".format(year, month, day))
+            raise ValueError("Value Error Raised Due to Invalid date: {}-{}-{}".format(year, month, day))
 
         self.year = year
         self.month = month
@@ -71,23 +70,23 @@ class LDate:
         #
 
     def __eq__(self, other) -> bool:
-        """Return whether the two objects represent the same date.
-        Return False if other is not an LDate."""
+        """ return whether the two objects represent the same date.
+            return False if other is not an LDate. """
         if not isinstance(other, LDate):
             return False
         return (self.year, self.month, self.day) == (other.year, other.month, other.day)
 
     def __lt__(self, other) -> bool:
-        """Return whether self < other.
-        Raise a ValueError if other is not an LDate."""
+        """ return whether self < other.
+            Raise a ValueError of other is not an LDate """
         if not isinstance(other, LDate):
             raise ValueError("Comparison with non-LDate object")
         return (self.year, self.month, self.day) < (other.year, other.month, other.day)
 
     def __le__(self, other) -> bool:
-        """Return whether self <= other.
-        Raise a ValueError if other is not an LDate.
-        Use the methods above. Don't re-implement the < algorithm!"""
+        """ return whether self <= other.
+            Raise a ValueError of other is not an LDate
+            Use the methods above.  Don't re-implement the < algorithm! """
         if not isinstance(other, LDate):
             raise ValueError("Comparison with non-LDate object")
         return self == other or self < other

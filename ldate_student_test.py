@@ -3,8 +3,8 @@
 #
 # Unit tests for LDate
 #
-# Name: zzNAMEzz (replace with your name)
-# Section: XX
+# Name: Gayatri Gonuguntla
+# Section: 04
 #
 # Fall 2023
 #########################################################
@@ -42,7 +42,27 @@ class LDateStudentTest(unittest.TestCase):
     def test_c_is_equal_2(self):
         d1 = ldate.LDate(2022, 5, 6)
         d2 = ldate.LDate(2022, 6, 5)
-        self.assertFalse(d1 == d2) 
+        self.assertFalse(d1 == d2)
+
+    def test_d_is_less_than_1(self):
+        d1 = ldate.LDate(2022, 5, 6)
+        d2 = ldate.LDate(2022, 5, 7)
+        self.assertTrue(d1 < d2)
+
+    def test_d_is_less_than_2(self):
+        d1 = ldate.LDate(2022, 5, 6)
+        d2 = ldate.LDate(2022, 6, 5)
+        self.assertTrue(d1 < d2)
+
+    def test_d_is_not_less_than_1(self):
+        d1 = ldate.LDate(2022, 5, 6)
+        d2 = ldate.LDate(2022, 5, 6)
+        self.assertFalse(d1 < d2)
+
+    def test_d_is_not_less_than_2(self):
+        d1 = ldate.LDate(2022, 5, 6)
+        d2 = ldate.LDate(2022, 4, 5)
+        self.assertFalse(d1 < d2)
 
     #
     # less than
@@ -101,6 +121,10 @@ class LDateStudentTest(unittest.TestCase):
         d1 = ldate.LDate(1997, 3, 10)
         d2 = ldate.LDate(1997, 4, 17)
         self.assertEqual(38, d2.days_since(d1))
+    def test_gh_days_since(self):
+        d1=ldate.LDate(1753,12,29)
+        d2=ldate.LDate(1999,1,31)
+        self.assertEqual(89517, d2.days_since(d1))
 
 
     #

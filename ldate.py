@@ -92,15 +92,40 @@ class LDate:
             raise ValueError("Comparison with non-LDate object")
         return self == other or self < other
 
+    day_in_month2 = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    def countingTheDays(self,year1, month1, day1):
+        # checking if the month is not feb
+        if month1 != 2:
+            if day1 < self.day_in_month2[month1 - 1]:
+                return year1, month1, day1 + 1
+            else:
+                return (year1 + 1, 1, 1) if month1 == 12 else (year1, month1 + 1, 1)
+        else:
+            # checking if the year is leap year
+            if self.is_leap_year(year1):
+                if day1 < self.day_in_month2[month1 - 1] + 1:
+                    return year1, month1, day1 + 1
+                else:
+                    return (year1 + 1, 1, 1) if month1 == 12 else (year1, month1 + 1, 1)
+            else:
+                if day1 < self.day_in_month2[month1 - 1]:
+                    return year1, month1, day1 + 1
+                else:
+                    return (year1 + 1, 1, 1) if month1 == 12 else (year1, month1 + 1, 1)
+
     def days_since(self, other) -> bool:
         """ Return the number of days that have elapsed since other.
             (In other words, when other < self, the result should be positive.)
         """
 
-        if not isinstance(other, LDate):
-            raise ValueError("Comparison with non-LDate object")
+        day1,month1,year1=other.day,other.month,other.year
+        day2, month2, year2 = self.day, self.month, self.year
 
-        return self.ordinal_date() - other.ordinal_date()
+        days = 0
+        while (not (month1 == month2 and year1 == year2 and day1 == day2)):
+            year1, month1, day1 = self.countingTheDays(year1, month1, day1)
+            days += 1
+        return days
         #
 
     _DAYS_OF_WEEK = ('Saturday', 'Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday')

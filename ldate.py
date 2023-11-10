@@ -151,7 +151,9 @@ class LDate:
 
     def __str__(self) -> str:
         """Return this date as a string of the form "Wednesday, 07 March 1833"."""
-        day_of_week_str = LDate._DAYS_OF_WEEK[self.ordinal_date() % 7]
+
+        day_of_week_str= self.day_of_week()
+        # day_of_week_str = LDate._DAYS_OF_WEEK[self.ordinal_date() % 7]
         # print(self.ordinal_date()%7,day_of_week_str)
         month_names = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
         return f"{day_of_week_str}, {self.day:02d} {month_names[self.month - 1]} {self.year}"
